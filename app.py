@@ -75,26 +75,26 @@ def index():
                 reviews.append(mydict)
             logging.info("log my final result {}".format(reviews))
 
-            uri = "mongodb+srv://GirishSonune:Bobby.MongoDB@2908@cluster0.4r8w4.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
-            client = MongoClient(uri)
-            try:
-                client.admin.command('ping')
-                print("Pinged your deployment. You successfully connected to MongoDB!")
-            except Exception as e:
-                print(e)
+            # uri = "mongodb+srv://GirishSonune:Bobby.MongoDB@2908@cluster0.4r8w4.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+            # client = MongoClient(uri)
+            # try:
+            #     client.admin.command('ping')
+            #     print("Pinged your deployment. You successfully connected to MongoDB!")
+            # except Exception as e:
+            #     print(e)
 
-            db = client['FlipkartReviews']
-            collection = db['Reviews']
+            # db = client['FlipkartReviews']
+            # collection = db['Reviews']
 
-            # Only insert if reviews is not empty
-            if reviews:
-                try:
-                    collection.insert_many(reviews)
-                    logging.info("Data inserted successfully")
-                except Exception as e:
-                    logging.error(f"MongoDB insertion error: {e}")
-            else:
-                logging.info("No reviews to insert")
+            # # Only insert if reviews is not empty
+            # if reviews:
+            #     try:
+            #         collection.insert_many(reviews)
+            #         logging.info("Data inserted successfully")
+            #     except Exception as e:
+            #         logging.error(f"MongoDB insertion error: {e}")
+            # else:
+            #     logging.info("No reviews to insert")
 
             return render_template('result.html', reviews=reviews[0:(len(reviews)-1)])
         except Exception as e:
